@@ -1,6 +1,15 @@
-import Portfolio from "./Portfolio";
-import './App.css';
+import React from "react";
+import { useAbout } from "./hooks/useSanity";
 
 export default function App() {
-  return <Portfolio />;
+  const about = useAbout();
+
+  if (!about) return <p className="text-center mt-20 text-gray-400">Loading...</p>;
+
+  return (
+    <div className="min-h-screen bg-gradient-to-r from-blue-900 to-blue-700 text-white p-10">
+      <h1 className="text-4xl font-bold mb-6">About Me</h1>
+      <p className="text-lg leading-relaxed">{about.bio}</p>
+    </div>
+  );
 }
